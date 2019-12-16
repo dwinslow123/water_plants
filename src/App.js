@@ -7,7 +7,7 @@ import * as data from './plants.json';
 class App extends Component {
   state = {
     plantList: [],
-    date: new Date('December 16, 2019 00:00:00')
+    date: new Date()
   };
 
   handleNewDate = (date) => {
@@ -45,17 +45,22 @@ class App extends Component {
   };
 
   render() {
-    const { plantList } = this.state;
+    const { plantList, date } = this.state;
 
-    const renderPlants =  plantList.map((plant, i) => {
-          return (
-            <ul key={i}>
-              <li>{plant.name}</li>
-              <li>{plant.water_after}</li>
-            </ul>
-          )
-        })
-
+    const renderPlants = plantList.map((plant, i) => {
+      const startDate = new Date('December 16, 2019 00:00:00');
+      const today = (date.getDate() % startDate.getDate());
+      if (date.getDay() === 0 || date.getDay() === 6) {
+        return null;
+      } else if ((date.getDay() - 1 === 0 || date.getDay() +1 === 6) || (today % parseInt(plant.water_after) === 0)) {
+        return (
+          <ul key={i}>
+            <li>{plant.name}</li>
+          </ul>
+        )
+      } 
+      return null;
+    })
 
     return (
       <div>
@@ -63,7 +68,7 @@ class App extends Component {
           selected={ this.state.date }
           onChange={ this.handleNewDate }
         />
-        {renderPlants}
+          {renderPlants}
         <button onClick={ this.handleYesterdayDate }>Yesterday</button>
       <button onClick={ this.handleTomorrowDate }>Tomorrow</button>
       </div>
