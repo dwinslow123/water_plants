@@ -1,0 +1,60 @@
+$body-bg: #fff;
+@import '~bootstrap/scss/bootstrap.scss';
+
+body, #root {
+  min-height: 100%;
+  min-width: 100%;
+  background: #f3f3f3;
+} // body, root
+
+.main-app {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .navbar {
+    width: 100%;
+    border-bottom: 2px solid #ddd;
+  } // main-app navbar
+
+  .date-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+
+    input {
+      text-align: center;
+    } // date-nav input
+    
+    .instructions {
+      border: 1px solid #ddd;
+      border-radius: 1px;
+      background: #FFFFFF;
+      padding: .5rem;
+      text-align: center;
+      margin-top: 1rem;
+
+      p {
+        margin: 0;
+      
+      }
+    }
+
+    .nav-buttons button {
+      margin: 1rem .5rem;
+    } // main-app date-nav nav-buttons
+  } // main-app date-nav
+
+  .list-group {
+    margin: .5rem;
+    width: 20%;
+    height: 80%;
+    box-shadow: 1px 1px #333;
+    text-align: center;
+  } // main-app list-group
+} // main-app

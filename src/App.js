@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import ListGroup from 'react-bootstrap/ListGroup';
+import { DayOfTheWeek } from './components/DayOfTheWeek';
+import { Header } from './components/Header';
 import * as data from './plants.json';
 
-import './custom.scss';
-import './App.scss';
+import './scss/custom.scss';
+import './scss/App.scss';
+
+import {ListGroup, Button} from 'react-bootstrap/';
 
 class App extends Component {
   state = {
@@ -54,23 +57,31 @@ class App extends Component {
           <ListGroup>
             <ListGroup.Item>{plant.name}</ListGroup.Item>
           </ListGroup>
-        )
-      }
-      return null;
-    })
-
-    return (
-      <div class="main-app">
-        <div class="date-nav">
-        <button onClick={ this.handleYesterdayDate }>Yesterday</button>
-        <DatePicker
-          selected={ this.state.date }
-          onChange={ this.handleNewDate }
-        />
-      <button onClick={ this.handleTomorrowDate }>Tomorrow</button>
-      </div>
-          {renderPlants}
-      </div>
+          )
+        }
+        return null;
+      })
+      
+      return (
+        <div class="main-app">
+          <Header />
+          <div class="date-nav">
+            <DatePicker
+              selected={ this.state.date }
+              onChange={ this.handleNewDate }
+            />
+            <div class="instructions">
+              <p>Click on the date above to select a date in the future</p>
+              <p>Or use the buttons below to move between the days</p>
+            </div>
+            <div class="nav-buttons">
+              <Button variant="secondary" onClick={ this.handleYesterdayDate }>Yesterday</Button>
+              <Button variant="secondary" onClick={ this.handleTomorrowDate }>Tomorrow</Button>
+            </div>
+          </div>
+            <DayOfTheWeek day={ date.getDay() }/>
+            {renderPlants}
+        </div>
     )
   }
 }
