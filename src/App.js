@@ -47,7 +47,7 @@ class App extends Component {
   render() {
     const { plantList, date } = this.state;
     const renderPlants = plantList.map((plant, i) => {
-      const startDate = new Date('December 16, 2019 00:00:00');
+      const startDate = new Date();
       const today = (date.getDate() % startDate.getDate());
 
       if (date.getDay() === 0 || date.getDay() === 6) {
